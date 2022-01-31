@@ -15,14 +15,15 @@ int		ft_strlen(const char *str);
 int		lenght(int nb, int base);
 int		ll_lenght(long long nb, int base);
 
-int		other_flags(char type, va_list curr_param);
+int		other_flags(char type);
 int		flag_print(char type, va_list curr_param);
 int		ft_printf(const char *a, ...);
 
 int		print_char(va_list param);
 
-int		complete_conversion(int n, char *str, char *digits);
-int		print_hex(int nb, char *digits);
+int		hex_len(unsigned	int num);
+void	ft_put_hex(unsigned int num, const char format);
+int		ft_print_hex(unsigned int num, const char format);
 
 int		ft_putnbr(int nb);
 

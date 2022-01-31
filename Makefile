@@ -19,6 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
 $(NAME): ${OBJS}
+
 		ar rcs ${NAME} ${OBJS}
 
 all:	${NAME}

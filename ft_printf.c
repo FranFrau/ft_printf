@@ -1,10 +1,8 @@
 #include "ft_printf.h"
 
-int	other_flags(char type, va_list curr_param)
+int	other_flags(char type)
 {
-	if (type == 'X')
-		return (print_hex(va_arg(curr_param, int), "0123456789ABCDEF"));
-	else if (type > 'A' && type < 'E')
+	if (type > 'A' && type < 'E')
 	{
 		ft_putchar('%');
 		ft_putchar(type);
@@ -14,18 +12,12 @@ int	other_flags(char type, va_list curr_param)
 		ft_putchar('%');
 		ft_putchar(type);
 	}
-	else if (type == 'u')
-		ft_put_unsigned_nbr(va_arg(curr_param, unsigned int));
-	else if (type == 'x')
-		return (print_hex(va_arg(curr_param, int), "0123456789abcdef"));
-	else if (type == '%')
-		ft_putchar('%');
 	else
 		ft_putchar('%');
 	return (1);
 }
 
-int	flag_print(char type, va_list curr_param)
+int	flag_print(const char type, va_list curr_param)
 {
 	if (type == 'c')
 		return (print_char(curr_param));
@@ -39,8 +31,13 @@ int	flag_print(char type, va_list curr_param)
 		return (ft_putnbr(va_arg(curr_param, int)));
 	else if (type == 'u')
 		return (ft_put_unsigned_nbr(va_arg(curr_param, unsigned int)));
+	else if (type == 'x' || type == 'X')
+		return (ft_print_hex(va_arg(curr_param, unsigned int), type));
+	else if (type == '%')
+		ft_putchar('%');
 	else
-		return (other_flags(type, curr_param));
+		return (other_flags(type));
+	return (1);
 }
 
 int	ft_printf(const char *a, ...)
@@ -59,14 +56,15 @@ int	ft_printf(const char *a, ...)
 			i++;
 			counter += flag_print(a[i], param_list);
 			i++;
-			if (a[i] == '%')
-				i++;
 		}
 		if (!a[i])
 			return (counter);
-		ft_putchar(a[i]);
-		i++;
-		counter++;
+		if (a[i] != '%')
+		{
+			counter++;
+			ft_putchar(a[i]);
+			i++;
+		}
 	}
 	return (counter);
 }

@@ -1,43 +1,44 @@
 #include "ft_printf.h"
 
-int	complete_conversion(int n, char *str, char *digits)
+int	ft_hex_len(unsigned	int num)
 {
-	unsigned int	nb;
-	int				i;
-	char			*porcocazzo;
+	int	len;
 
-	i = 7;
-	if (n < 0)
-		nb = 4294967295 + n + 1;
-	else
-		nb = n;
-	while (nb && str)
+	len = 0;
+	while (num != 0)
 	{
-		str[i] = digits[nb % 16];
-		nb /= 16;
-		i--;
+		len++;
+		num = num / 16;
 	}
-	porcocazzo = str;
-	while (!*str)
-		str++;
-	str[8] = 0;
-	ft_putstr(str);
-	i = ft_strlen(str);
-	free(porcocazzo);
-	return (i);
+	return (len);
 }
 
-int	print_hex(int nb, char *digits)
+void	ft_put_hex(unsigned int num, const char format)
 {
-	char		*str;
-
-	str = malloc(9);
-	if (!str)
-		return (0);
-	if (nb == 0)
+	if (num >= 16)
 	{
-		str[0] = '0';
-		str[1] = 0;
+		ft_put_hex(num / 16, format);
+		ft_put_hex(num % 16, format);
 	}
-	return (complete_conversion(nb, str, digits));
+	else
+	{
+		if (num <= 9)
+			ft_putchar((num + '0'));
+		else
+		{
+			if (format == 'x')
+				ft_putchar((num - 10 + 'a'));
+			if (format == 'X')
+				ft_putchar((num - 10 + 'A'));
+		}
+	}
+}
+
+int	ft_print_hex(unsigned int num, const char format)
+{
+	if (num == 0)
+		return (write(1, "0", 1));
+	else
+		ft_put_hex(num, format);
+	return (ft_hex_len(num));
 }
