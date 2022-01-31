@@ -20,12 +20,6 @@ int	ft_putstr(char *str)
 		ft_putchar(str[i]);
 		i++;
 	}
-	/*
-	printf("\nPre");
-	write(1, &str, ft_strlen(str));
-	printf("\npost");
-	*/
-	//printf("%d", ft_strlen(str));
 	return (i);
 }
 

@@ -5,11 +5,10 @@ SRCS = 	ft_printf_utils.c \
 		ftp_char_utils.c \
 		ftp_hex_utils.c \
 		ftp_num_utils.c \
-		ftp_string_utils.c \
+		ftp_ptr_utils.c \
 		ftp_uint_utils.c \
-		
-OBJS = ${SRCS:.c=.o}
 
+OBJS = ${SRCS:.c=.o}
 
 CC		= gcc
 RM		= rm -f

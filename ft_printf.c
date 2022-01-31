@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <limits.h>
 
 int	other_flags(char type, va_list curr_param)
 {
@@ -33,7 +32,7 @@ int	flag_print(char type, va_list curr_param)
 	else if (type == 's')
 		return (ft_putstr(va_arg(curr_param, char *)));
 	else if (type == 'p')
-		return (print_address_hex(va_arg(curr_param, void *)));
+		return (ptr_print(va_arg(curr_param, unsigned long long)));
 	else if (type == 'd')
 		return (ft_putnbr(va_arg(curr_param, int)));
 	else if (type == 'i')
@@ -55,7 +54,6 @@ int	ft_printf(const char *a, ...)
 	va_start(param_list, a);
 	while (a[i])
 	{
-		//printf("[%c | %d]\n", a[i], i);
 		if (a[i] == '%')
 		{
 			i++;
@@ -71,12 +69,4 @@ int	ft_printf(const char *a, ...)
 		counter++;
 	}
 	return (counter);
-}
-
-int main(){
-	printf("Printf: %p %p \n", LONG_MIN, LONG_MAX);
-	printf("Printf: %p %p \n", ULONG_MAX, -ULONG_MAX);
-	ft_printf("FTPrintf: %p %p \n", LONG_MIN, LONG_MAX);
-	ft_printf("FTPrintf: %p %p \n", ULONG_MAX, -ULONG_MAX);
-
 }
