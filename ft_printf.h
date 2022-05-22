@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ffrau <ffrau@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 01:11:10 by ffrau             #+#    #+#             */
+/*   Updated: 2022/05/23 01:11:47 by ffrau            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
@@ -5,7 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "../libft/libft.h"
 
 # define TYPES "cspdiuxX"
 
